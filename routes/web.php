@@ -13,18 +13,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard');
-});
+// Route::get('/', function () {
+//     return view('admin.dashboard');
+// });
 
-Route::get('/admin/costumes', function (){
-    return view('admin.costumes');
-});
+Route::prefix('admin')->group(function(){
+    Route::get('/', function(){
+        return view('admin.dashboard');
+    });
 
-Route::get('admin/orders', function (){
-    return view('admin.orders');
-});
+    Route::get('/costumes', function(){
+        return view('admin.costumes');
+    });
 
-Route::get('admin/orders/{id}', function (){
-    return view('admin.order');
+    Route::get('/orders', function(){
+        return view('admin.orders');
+    });
+
+    Route::get('orders/{id}', function(){
+        return view('admin.order');
+    });
+
+    Route::get('customers', function(){
+        return view('admin.customers');
+    });
+
+    Route::get('customers/{id}', function(){
+        return view('admin.customer');
+    });
+
+    Route::get('/login', function(){
+        return view('admin.login');
+    });
 });

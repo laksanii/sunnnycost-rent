@@ -14,6 +14,10 @@
                     <div class="side-icon text-center"><i class="fa-solid fa-receipt"></i></div>
                     <div class="ms-2">Orders</div>
                 </a>
+                <a class="nav-link" href="/admin/customers">
+                    <div class="side-icon text-center"><i class="fa-solid fa-users"></i></div>
+                    <div class="ms-2">Customers</div>
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">

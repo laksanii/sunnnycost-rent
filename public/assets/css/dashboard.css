@@ -1,3 +1,22 @@
+/* sidenav */
+.side-icon {
+    min-width: 25px;
+}
+
 .rent-info {
     min-height: 150px;
+}
+
+/* Order */
+.cust-img {
+    width: 180px;
+}
+
+.cust-idcard {
+    width: 270px;
+    height: 180px;
+}
+
+.costume-img {
+    width: 180px;
 }

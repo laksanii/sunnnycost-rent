@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/admin/costumes', function (){
     return view('admin.costumes');
 });
+
+Route::get('admin/orders', function (){
+    return view('admin.orders');
+});
+
+Route::get('admin/orders/{id}', function (){
+    return view('admin.order');
+});

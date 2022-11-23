@@ -2,17 +2,17 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Dashboard
+                <a class="nav-link" href="/">
+                    <div class="side-icon text-center"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="ms-2">Dashboard</div>
                 </a>
-                <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-shirt"></i></div>
-                    Costumes
+                <a class="nav-link" href="/admin/costumes">
+                    <div class="side-icon text-center"><i class="fa-solid fa-shirt"></i></div>
+                    <div class="ms-2">Costumes</div>
                 </a>
-                <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fa-solid fa-receipt"></i></div>
-                    Orders
+                <a class="nav-link" href="/admin/orders">
+                    <div class="side-icon text-center"><i class="fa-solid fa-receipt"></i></div>
+                    <div class="ms-2">Orders</div>
                 </a>
             </div>
         </div>

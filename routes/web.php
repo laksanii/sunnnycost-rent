@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CostumeController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,35 +19,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', function () {
-//     return view('admin.dashboard');
+//     session()->put('role', 'admin');
+//     return "Dashboard";
 // });
 
 Route::prefix('admin')->group(function(){
-    Route::get('/', function(){
-        return view('admin.dashboard');
+    Route::middleware('admin')->group(function(){
+        Route::get('/', [DashboardController::class, 'index']);
+    
+        Route::get('/costumes', [CostumeController::class, 'index']);
+    
+        Route::get('/orders', [OrderController::class, 'index']);
+    
+        Route::get('/orders/{id}', [OrderController::class, 'order']);
+    
+        Route::get('/customers', [CustomerController::class, 'index']);
+    
+        Route::get('/customers/{id}', [CostumeController::class, 'customer']);
+
+        Route::post('/logout', [LoginController::class, 'logout']);
     });
 
-    Route::get('/costumes', function(){
-        return view('admin.costumes');
-    });
-
-    Route::get('/orders', function(){
-        return view('admin.orders');
-    });
-
-    Route::get('orders/{id}', function(){
-        return view('admin.order');
-    });
-
-    Route::get('customers', function(){
-        return view('admin.customers');
-    });
-
-    Route::get('customers/{id}', function(){
-        return view('admin.customer');
-    });
-
-    Route::get('/login', function(){
-        return view('admin.login');
+    Route::middleware('guest')->group(function(){
+        Route::get('/login', [LoginController::class, 'index']);
+        Route::post('/login', [LoginController::class, 'authentication']);
     });
 });

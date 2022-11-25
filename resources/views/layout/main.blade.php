@@ -20,6 +20,11 @@
         @include('partials.sidenav')
         <div id="layoutSidenav_content">
             @yield('content')
+            <div class="footer">
+                <div class="card-footer text-muted text-center py-2">
+                    &copy; sunnyrent-cos 2022
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>

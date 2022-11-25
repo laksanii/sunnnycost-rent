@@ -20,3 +20,16 @@
 .costume-img {
     width: 180px;
 }
+
+/* Costumes */
+.list-costume-img {
+    width: 70px;
+}
+
+.desc-column {
+    width: 20%;
+}
+
+.action-column {
+    width: 15%;
+}

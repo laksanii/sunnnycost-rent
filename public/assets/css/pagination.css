@@ -1,0 +1,10 @@
+:root {
+    --yellow: #ffe563;
+    --black: #292929ff;
+    --pink: #d34a76ff;
+    --grey: #dde1e4ff;
+}
+
+.active-page {
+    background-color: var(--yellow);
+}

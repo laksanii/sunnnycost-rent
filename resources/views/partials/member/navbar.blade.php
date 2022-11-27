@@ -58,27 +58,25 @@
     <hr class="m-0">
     <div class="costumes-nav bg-light shadow py-2">
         <div class="container d-flex flex-column flex-xl-row justify-content-between align-items-center">
-            <div class="categories d-flex gap-3 mb-2">
+            <div class="categories d-flex flex-wrap justify-content-center gap-2 mb-2">
                 <div class="category-item">
-                    <a href="" class="text-decoration-none category-list">Genshin Impact</a>
+                    <a href="/costumes"
+                        class="text-decoration-none category-list {{ $cate == 'all' ? 'category-active' : '' }}">Semua</a>
                 </div>
-                <div class="category nav-item">
-                    <a href="" class="text-decoration-none category-list category-active">Love Live</a>
-                </div>
-                <div class="category nav-item">
-                    <a href="" class="text-decoration-none category-list">Anime</a>
-                </div>
-                <div class="category nav-item">
-                    <a href="" class="text-decoration-none category-list">Game</a>
-                </div>
+                @foreach ($categories as $category)
+                    <div class="category-item">
+                        <a href="/costumes?category={{ $category->id }}"
+                            class="text-decoration-none category-list {{ $cate == $category->id ? 'category-active' : '' }}">{{ $category->category_name }}</a>
+                    </div>
+                @endforeach
             </div>
             <div class="search">
-                <form action="#" method="GET">
+                <form action="/costumes" method="GET">
                     <div class="input-group search-box">
                         <span class="input-group-text" id="basic-addon1"><i
                                 class="fa-solid fa-magnifying-glass"></i></span>
                         <input type="text" class="form-control search-bar shadow-none" placeholder="Search..."
-                            aria-label="Search" aria-describedby="basic-addon1" name="search">
+                            aria-label="Search" name="search" aria-describedby="basic-addon1" name="search">
                     </div>
                 </form>
             </div>

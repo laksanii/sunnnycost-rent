@@ -14,7 +14,7 @@
     <section id="featured" class="mt-4">
         <div class="container pb-2">
             <h4 class="mb-3">Featured</h4>
-            <div class="swiper">
+            <div class="swiper featured-swiper">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper shadow">
                     <!-- Slides -->

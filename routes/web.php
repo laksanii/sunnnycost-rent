@@ -71,3 +71,11 @@ Route::get('/costumes', [CostumeController::class, 'memberIndex']);
 Route::get('/costumes/{id}', [CostumeController::class, 'memberCostume']);
 
 Route::get('/get-city', [RegisterController::class, 'getCity']);
+
+Route::get('/insert-kostum', [CostumeController::class, 'insert']);
+
+Route::post('/insert-kostum', [CostumeController::class, 'storeKostum']);
+
+Route::get('/tes', function(){
+    return view('test');
+});

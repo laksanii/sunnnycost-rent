@@ -14,6 +14,14 @@ class Costume extends Model
 
     protected $guards = [];
 
+    protected $fillable = [
+        'costume_name',
+        'description',
+        'gambar',
+        'price',
+        'status',
+        'category_id'
+    ];
     public function orders(){
         return $this->belongsToMany(Order::class);
     }

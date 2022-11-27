@@ -25,7 +25,7 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if(Auth::user()->role == 'admin'){
                     return redirect('/admin');
-                }elseif(Auth::user()->role == 'customer'){
+                }elseif(Auth::user()->role == 'member'){
                     return redirect('/');
                 }
             }

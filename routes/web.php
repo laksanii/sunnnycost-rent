@@ -51,9 +51,7 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::middleware('member')->group(function(){
-    Route::get('/', function(){
-        return view('member.home');
-    });
+    Route::post('/logout', [LoginController::class, 'logout']);
 });
 
 Route::middleware('guest')->group(function(){
@@ -65,5 +63,11 @@ Route::middleware('guest')->group(function(){
 
     Route::post('/register', [MemberController::class, 'storeMember']);
 });
+
+Route::get('/', [MemberController::class, 'index']);
+
+Route::get('/costumes', [CostumeController::class, 'memberIndex']);
+
+Route::get('/costumes/{id}', [CostumeController::class, 'memberCostume']);
 
 Route::get('/get-city', [RegisterController::class, 'getCity']);

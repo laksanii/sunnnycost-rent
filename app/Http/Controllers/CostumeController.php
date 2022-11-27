@@ -21,4 +21,18 @@ class CostumeController extends Controller
             'costume' => Costume::find($id)
         ]);
     }
+
+    public function memberIndex(){
+        return view('member.costumes', [
+            'title' => 'Costumes',
+            'costumes' => Costume::all(),
+        ]);
+    }
+
+    public function memberCostume($id){
+        return view('member.costume', [
+            'title' => 'Costume Detail',
+            'costume' => Costume::find($id),
+        ]);
+    }
 }

@@ -22,6 +22,13 @@
                         class="logo-img-register rounded-circle">
                     <h3 class="text-black">Registration</h3>
                 </div>
+                @if (session()->has('registSuccess'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{ session('registSuccess') }}</strong>
+                        <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                    </div>
+                @endif
                 <form action="/register" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="field bg-light rounded rounded-3 py-2 px-3 mb-3">
@@ -32,7 +39,8 @@
                             </div>
                             <div class="col-11">
                                 <input type="text" name="nama" id="nama" placeholder="Nama Lengkap"
-                                    class="bg-transparent border-0 border border-bottom text-secondary" name="nama">
+                                    class="bg-transparent border-0 border border-bottom text-secondary" name="nama"
+                                    value="{{ old('nama') }}">
                             </div>
                         </div>
                         @error('nama')
@@ -49,7 +57,8 @@
                             </div>
                             <div class="col-11">
                                 <input type="text" name="username" id="nama" placeholder="Username"
-                                    class="bg-transparent border-0 border border-bottom text-secondary" name="username">
+                                    class="bg-transparent border-0 border border-bottom text-secondary" name="username"
+                                    value="{{ old('username') }}">
                             </div>
                             @error('username')
                                 <span class="error-msg text-danger">
@@ -66,7 +75,8 @@
                             </div>
                             <div class="col-11">
                                 <input type="text" name="email" id="email" placeholder="example@domain"
-                                    class="bg-transparent border-0 border border-bottom text-secondary" name="email">
+                                    class="bg-transparent border-0 border border-bottom text-secondary" name="email"
+                                    value="{{ old('email') }}">
                             </div>
                             @error('email')
                                 <span class="error-msg text-danger">
@@ -100,7 +110,8 @@
                             </div>
                             <div class="col-11">
                                 <input type="number" name="no_hp" id="no_hp" placeholder="08xxxx"
-                                    class="bg-transparent border-0 border border-bottom text-secondary">
+                                    class="bg-transparent border-0 border border-bottom text-secondary"
+                                    value="{{ old('no_hp') }}">
                             </div>
                             @error('no_hp')
                                 <span class="error-msg text-danger">
@@ -167,7 +178,7 @@
                             <div class="col-11">
                                 <textarea name="alamat" id="alamat" rows="10"
                                     class="bg-transparent border-0 border border-bottom text-secondary p-1" style="width: 100%"
-                                    placeholder="example: Jl. Melati No. 99 RT.1/RW.2, Kec. Bunga"></textarea>
+                                    placeholder="example: Jl. Melati No. 99 RT.1/RW.2, Kec. Bunga">{{ old('alamat') }}</textarea>
                             </div>
                             @error('alamat')
                                 <span class="error-msg text-danger">
@@ -184,7 +195,8 @@
                             </div>
                             <div class="col-11">
                                 <input type="text" name="kode_pos" id="kode_pos" placeholder="60xxx"
-                                    class="bg-transparent border-0 border border-bottom text-secondary">
+                                    class="bg-transparent border-0 border border-bottom text-secondary"
+                                    value="{{ old('kode_pos') }}">
                             </div>
                             @error('kode_pos')
                                 <span class="error-msg text-danger">
@@ -244,7 +256,7 @@
                         </div>
                     </div>
                     <div class="field d-flex mb-2">
-                        <button type="submit" class="btn btn-primary rounded-pill login-btn fw-bold">Login</button>
+                        <button type="submit" class="btn btn-primary rounded-pill login-btn fw-bold">Regiter</button>
                     </div>
                 </form>
                 <div class="caption text-center">

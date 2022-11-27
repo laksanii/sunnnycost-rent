@@ -1,0 +1,100 @@
+.bg-grey-2 {
+    background-color: rgb(233, 239, 244);
+}
+
+.box {
+    min-height: 90vh;
+}
+
+.logo-img {
+    width: 60%;
+}
+
+label,
+input {
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.login-btn {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .box {
+        min-height: 90vh;
+    }
+}
+
+/* register */
+.logo-img-register {
+    width: 45px;
+}
+
+/*
+ * File
+ */
+
+.file {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    /* height: 1rem; */
+}
+.file input {
+    min-width: 14rem;
+    margin: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.file-custom {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    /* height: 2.5rem; */
+    /* padding: 0.5rem 1rem; */
+    /* line-height: 1.5; */
+    color: #555;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0.25rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* .file-custom:before {
+    position: absolute;
+    top: -0.075rem;
+    right: -0.075rem;
+    bottom: -0.075rem;
+    z-index: 6;
+    display: block;
+    content: "Browse";
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    color: #555;
+    background-color: #eee;
+    border: 0.075rem solid #ddd;
+    border-radius: 0 0.25rem 0.25rem 0;
+} */
+
+.preview-img {
+    width: 100%;
+    display: none;
+}
+
+.error-msg {
+    font-size: 0.8em;
+}

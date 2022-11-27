@@ -1,0 +1,35 @@
+.bg-grey-2 {
+    background-color: rgb(233, 239, 244);
+}
+
+.box {
+    height: 80vh;
+}
+
+.logo-img {
+    width: 60%;
+}
+
+label,
+input {
+    letter-spacing: 0.5px;
+}
+
+input {
+    width: 100%;
+}
+
+.login-btn {
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .box {
+        height: 70vh;
+    }
+}
+
+/* register */
+.logo-img-register {
+    width: 45px;
+}

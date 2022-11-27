@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.admin.main')
 
 @section('content')
     <main>
@@ -10,12 +10,12 @@
             <div class="row">
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-primary text-white mb-4">
-                        <div class="card-body rent-info">
-                            <div class="label fs-4 text-center">
+                        <div class="card-body rent-info d-flex flex-column justify-content-between">
+                            <div class="label fs-4 text-center ">
                                 Sedang Dirental
                             </div>
                             <div class="jumlah fs-3 text-center">
-                                10
+                                {{ $on_rent }}
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
@@ -26,12 +26,12 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-warning text-white mb-4">
-                        <div class="card-body rent-info">
+                        <div class="card-body rent-info d-flex flex-column justify-content-between">
                             <div class="label fs-4 text-center">
                                 Dalam Pengiriman (kembali)
                             </div>
                             <div class="jumlah fs-3 text-center">
-                                10
+                                {{ $pengiriman_kembali }}
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
@@ -42,12 +42,12 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-success text-white mb-4">
-                        <div class="card-body rent-info">
+                        <div class="card-body rent-info d-flex flex-column justify-content-between">
                             <div class="label fs-4 text-center">
-                                Sudah Dikembalikan
+                                Sudah Dikembalikan (Ready)
                             </div>
                             <div class="jumlah fs-3 text-center">
-                                10
+                                {{ $ready }}
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
@@ -58,12 +58,12 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-danger text-white mb-4">
-                        <div class="card-body rent-info">
+                        <div class="card-body rent-info d-flex flex-column justify-content-between">
                             <div class="label fs-4 text-center">
                                 Telat Dikembalikan
                             </div>
                             <div class="jumlah fs-3 text-center">
-                                10
+                                {{ $terlambat }}
                             </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">

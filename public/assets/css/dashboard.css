@@ -31,5 +31,11 @@
 }
 
 .action-column {
-    width: 15%;
+    width: 10%;
+}
+
+/* Costume */
+
+.cost-slide-img {
+    width: 100%;
 }

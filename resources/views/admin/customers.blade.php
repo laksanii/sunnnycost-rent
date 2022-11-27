@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout.admin.main')
 
 @section('content')
     <main>
@@ -38,15 +38,15 @@
                         </tfoot>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Perental 1</td>
-                                <td>rental@gmail.com</td>
-                                <td class="text-center">083832352467</td>
-                                <td class="text-center">Jakarta</td>
-                                <td class="text-center">Jakarta Timur</td>
-                                <td class="text-center">Jakarta Timur</td>
-                                <td class="text-center">081392398977</td>
-                                <td class="text-center">
+                                <td class="align-middle">1</td>
+                                <td class="align-middle">Perental 1</td>
+                                <td class="align-middle">rental@gmail.com</td>
+                                <td class="align-middle text-center">083832352467</td>
+                                <td class="align-middle text-center">Jakarta</td>
+                                <td class="align-middle text-center">Jakarta Timur</td>
+                                <td class="align-middle text-center">Jakarta Timur</td>
+                                <td class="align-middle text-center">081392398977</td>
+                                <td class="align-middle text-center">
                                     <a href="/admin/customers/1" class="btn btn-success">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>

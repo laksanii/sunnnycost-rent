@@ -23,8 +23,12 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             session()->regenerate();
+            if(Auth::user()->role == 'admin'){
+                return redirect()->intended("/admin");
+            }else{
             session(["cart" => []]);
-            return redirect()->intended("/admin");
+            return redirect()->intended("/");
+            }
         }
 
         return back()->with('loginError', 'Username atau password salah');

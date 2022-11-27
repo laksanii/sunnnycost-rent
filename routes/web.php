@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CostumeController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -28,6 +30,8 @@ Route::prefix('admin')->group(function(){
         Route::get('/', [DashboardController::class, 'index']);
     
         Route::get('/costumes', [CostumeController::class, 'index']);
+
+        Route::get('/costumes/{id}', [CostumeController::class, 'costume']);
     
         Route::get('/orders', [OrderController::class, 'index']);
     
@@ -35,7 +39,7 @@ Route::prefix('admin')->group(function(){
     
         Route::get('/customers', [CustomerController::class, 'index']);
     
-        Route::get('/customers/{id}', [CostumeController::class, 'customer']);
+        Route::get('/customers/{id}', [CustomerController::class, 'customer']);
 
         Route::post('/logout', [LoginController::class, 'logout']);
     });
@@ -45,3 +49,21 @@ Route::prefix('admin')->group(function(){
         Route::post('/login', [LoginController::class, 'authentication']);
     });
 });
+
+Route::middleware('member')->group(function(){
+    Route::get('/', function(){
+        return view('member.home');
+    });
+});
+
+Route::middleware('guest')->group(function(){
+    Route::get('/login', [MemberController::class, 'login']);
+
+    Route::post('/login', [LoginController::class, 'authentication']);
+
+    Route::get('/register', [MemberController::class, 'register']);
+
+    Route::post('/register', [MemberController::class, 'storeMember']);
+});
+
+Route::get('/get-city', [RegisterController::class, 'getCity']);

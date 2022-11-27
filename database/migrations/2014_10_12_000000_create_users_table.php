@@ -19,9 +19,15 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('gambar');
+            $table->string('foto_profile')->default('default.jpg');
+            $table->string('foto_selfie')->nullable();
+            $table->string('foto_ktp')->nullable();
+            $table->string('provinsi');
+            $table->string('kota');
+            $table->string('alamat');
+            $table->string('kode_pos', 10);
             $table->string('no_telepon', 20);
-            $table->string('role');
+            $table->string('role')->default('member');
             $table->rememberToken();
             $table->timestamps();
         });

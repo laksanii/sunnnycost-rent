@@ -14,4 +14,11 @@ class CostumeController extends Controller
             'costumes' => Costume::all(),
         ]);
     }
+
+    public function costume($id){
+        return view('admin.costume', [
+            'title' => 'Costume Detail',
+            'costume' => Costume::find($id)
+        ]);
+    }
 }

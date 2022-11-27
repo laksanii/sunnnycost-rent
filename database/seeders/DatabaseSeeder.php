@@ -59,8 +59,11 @@ class DatabaseSeeder extends Seeder
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('password'),
-                'gambar' => 'admin.jpg',
                 'no_telepon' => '083832352467',
+                'provinsi' => 'DKI Jakarta',
+                'kota' => 'Jakarta Timur',
+                'alamat' => 'jl Pangkalan Jati bla bla bla',
+                'kode_pos' => '60182',
                 'role' => 'admin',
             ]
         ]);

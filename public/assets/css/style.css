@@ -85,6 +85,10 @@
     color: var(--yellow);
 }
 
+.cart-count {
+    font-size: 0.6em;
+}
+
 /* HOME */
 .new-arrival-img {
     width: 100%;
@@ -198,6 +202,39 @@ input:focus {
     border-color: var(--black);
 }
 
+/* cart */
+.item-img {
+    width: 10em;
+}
+
+.payments {
+    min-height: 600px;
+}
+
+.rent-msg {
+    font-size: 0.8em;
+}
+
+.bank-img {
+    height: 50px;
+    width: 80px;
+}
+
+.a-n {
+    font-size: 0.7em;
+}
+
+/* notif */
+.cart-success {
+    z-index: 99999;
+    top: -60px;
+    transition: 0.8s ease;
+}
+
+.muncul {
+    top: 10%;
+}
+
 /* Responsive */
 
 @media screen and (min-width: 1200px) {
@@ -248,6 +285,10 @@ input:focus {
 
     .name {
         display: none;
+    }
+
+    .item-img {
+        width: 7em;
     }
 }
 

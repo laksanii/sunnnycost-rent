@@ -195,6 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         \App\Providers\UserServiceProvider::class,
+        \App\Providers\DomisiliServiceProvider::class,
 
     ],
 
@@ -211,6 +212,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Domisili' => App\helpers\Domisili::class,
     ])->toArray(),
 
 ];

@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_order');
-            $table->date('tgl_rental');
-            $table->date('tgl_kembali');
             $table->string('payment_method');
-            $table->string('payment_status');
-            $table->integer('amount');
-            $table->decimal('ongkir', $precision = 10, $scale = 0);
-            $table->decimal('total', $precision = 10, $scale = 0);
-            $table->foreignId('user_id')->constrained('users');
+            $table->string('no_rekening');
             $table->timestamps();
         });
     }
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('payments');
     }
 };

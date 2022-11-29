@@ -22,8 +22,12 @@
         </div>
         <div class="right ms-auto d-flex gap-4 fs-5">
             @if (auth()->check())
-                <div class="account-btn nav-item d-flex align-items-center ">
-                    <i class=" fa-solid fa-cart-shopping"></i>
+                <div class="account-btn nav-item d-flex align-items-center position-relative ">
+                    <a href="/cart/{{ auth()->user()->username }}" class="text-decoration-none text-dark">
+                        <i class=" fa-solid fa-cart-shopping"></i>
+                        <span
+                            class="cart-count position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger py-1 px-2">{{ $cart_count }}</span>
+                    </a>
                 </div>
                 <div class="account-btn nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
@@ -32,6 +36,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Orders</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>

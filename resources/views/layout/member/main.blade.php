@@ -15,6 +15,10 @@
 </head>
 
 <body>
+    <div class="d-none cart-success shadow position-fixed start-50 translate-middle-x alert bg-yellow alert-dismissible fade show"
+        role="alert" id="cart-success">
+        <strong> Berhasil ditambahkan ke keranjang</strong>
+    </div>
     @include('partials.member.navbar')
 
     @yield('content')

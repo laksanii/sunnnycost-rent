@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Cart;
 use App\Models\Size;
 use App\Models\Order;
 use App\Models\Category;
@@ -32,5 +33,9 @@ class Costume extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function carts(){
+        return $this->hasMany(Cart::class);
     }
 }

@@ -19,7 +19,7 @@ class CostumeImport implements ToModel
             'costume_name' => $row[1],
             'description' => $row[2],
             'price' => $row[3],
-            'gambar' => Str::slug($row[1], '_') . '.jpg',
+            'gambar' => $row[5],
             'status' => 'ready',
             'category_id' => $row[4]
         ]);

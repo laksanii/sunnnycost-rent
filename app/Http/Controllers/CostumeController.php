@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Costume;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Imports\CostumeImport;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class CostumeController extends Controller
 {
     public function index(){
+        if(Auth::check()){
+            $carts = Cart::where('user_id', Auth::user()->id);
+        }else{
+            $carts = collect([]);
+        }
         return view('admin.costumes', [
             'title' => 'Costumes',
             'costumes' => Costume::all(),
+            'carts' => $carts,
+            'carts_count' => $carts->count(),
         ]);
     }
 

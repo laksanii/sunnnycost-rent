@@ -158,7 +158,8 @@
                                     class="bg-transparent border-0 border border-bottom text-secondary js-example-basic-single"
                                     style="
                                     border: none; background-color:rgba(0,0,0,);width:100%;
-                                    ">
+                                    "
+                                    disabled>
                                     <option value="" disabled selected>Pilih Kota/Kabupaten</option>
                                 </select>
                             </div>

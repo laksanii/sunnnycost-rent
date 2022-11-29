@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
@@ -51,7 +52,13 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::middleware('member')->group(function(){
+    Route::get('/cart/{username}', [CartController::class, 'index'])->middleware('cart');
+
     Route::post('/logout', [LoginController::class, 'logout']);
+
+    Route::get('/storeCart', [CartController::class, 'storeCart']);
+
+    Route::post('/delete-item', [CartController::class, 'deleteItem']);
 });
 
 Route::middleware('guest')->group(function(){
@@ -64,11 +71,13 @@ Route::middleware('guest')->group(function(){
     Route::post('/register', [MemberController::class, 'storeMember']);
 });
 
-Route::get('/', [MemberController::class, 'index']);
-
-Route::get('/costumes', [CostumeController::class, 'memberIndex']);
-
-Route::get('/costumes/{id}', [CostumeController::class, 'memberCostume']);
+Route::middleware('cart')->group(function(){
+    Route::get('/', [MemberController::class, 'index']);
+    
+    Route::get('/costumes', [CostumeController::class, 'memberIndex']);
+    
+    Route::get('/costumes/{id}', [CostumeController::class, 'memberCostume']);
+});
 
 Route::get('/get-city', [RegisterController::class, 'getCity']);
 

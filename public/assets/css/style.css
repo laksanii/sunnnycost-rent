@@ -9,6 +9,11 @@
     --grey: #dde1e4ff;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
 .text-poppins {
     font-family: "Poppins", sans-serif;
 }

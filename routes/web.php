@@ -34,6 +34,10 @@ Route::prefix('admin')->group(function(){
         Route::get('/costumes', [CostumeController::class, 'index']);
 
         Route::get('/costumes/{id}', [CostumeController::class, 'costume']);
+
+        Route::get('/costume/{id}/delete', [CostumeController::class, 'deleteCostume']);
+
+        Route::post('/costume/insert-costume', [CostumeController::class, 'insertCostume']);
     
         Route::get('/orders', [OrderController::class, 'index']);
     
@@ -43,6 +47,8 @@ Route::prefix('admin')->group(function(){
     
         Route::get('/customers/{id}', [CustomerController::class, 'customer']);
 
+        Route::post('/update-costume', [CostumeController::class, 'updateCostume']);
+        
         Route::post('/logout', [LoginController::class, 'logout']);
     });
 

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Costume;
 use App\Models\Category;
 use Carbon\CarbonImmutable;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Imports\CostumeImport;
 use Illuminate\Support\Carbon;
@@ -17,16 +18,10 @@ use Maatwebsite\Excel\Facades\Excel;
 class CostumeController extends Controller
 {
     public function index(){
-        if(Auth::check()){
-            $carts = Cart::where('user_id', Auth::user()->id);
-        }else{
-            $carts = collect([]);
-        }
         return view('admin.costumes', [
             'title' => 'Costumes',
             'costumes' => Costume::all(),
-            'carts' => $carts,
-            'carts_count' => $carts->count(),
+            'categories' => Category::all(),
         ]);
     }
 
@@ -95,4 +90,75 @@ class CostumeController extends Controller
         return response()->json(array('msg' => $msg));
     }
     
+    public function updateCostume(Request $request){
+        $validate = $request->validate([
+            'gambar' => 'image|file|max:2048'
+        ],
+        [
+            'gambar.image' => 'Harus berupa file gambar',
+            'gambar.file' => 'Harus berupa file',
+            'gambar.max' => 'Ukuran file maksimal 2MB',
+        ]);
+
+        if(!is_null($request->file('gambar'))){
+            $nama_file = Str::slug($request->nama, '_');
+            $ext = $request->file('gambar')->getClientOriginalExtension();
+            $path = 'img/costumes/';
+            $request->file('gambar')->storeAs($path, $nama_file.'.'.$ext, 'asset');
+        }
+        
+        $costume = Costume::find($request->id);
+        
+        $costume->costume_name = $request->nama;
+        $costume->description = $request->description;
+        $costume->price = $request->harga;
+        if(!is_null($request->file('gambar'))){
+            $costume->gambar = $nama_file.'.'.$ext;
+        }
+        
+        $costume->save();
+
+        return redirect()->back()->with('editSuccess', 'Kostum berhasil diedit');
+    }
+
+    public function deleteCostume($id) {
+        Costume::find($id)->delete();
+
+        return redirect("/admin/costumes")->with('deleteSuccess', 'Kostum berhasil dihapus');
+    }
+
+    public function insertCostume(Request $request){
+        $validate = $request->validate([
+            'nama' => 'required',
+            'description' => 'required',
+            'harga' => 'required',
+            'gambar' => 'required|image|file|max:2048'
+        ],
+        [
+            'nama.required' => 'Nama kostum tidak boleh kosong',
+            'description.required' => 'Deskripsi tidak boleh kosong',
+            'harga.required' => 'Harga tidak boleh kosong',
+            'gambar.required' => 'Gambar tidak boleh kosong',
+            'gambar.image' => 'Harus berupa file gambar',
+            'gambar.file' => 'Harus berupa file',
+            'gambar.max' => 'Ukuran file maksimal 2MB',
+        ]);
+
+        $nama_file = Str::slug($request->nama, '_');
+        $ext = $request->file('gambar')->getClientOriginalExtension();
+        $path = 'img/costumes/';
+        $request->file('gambar')->storeAs($path, $nama_file.'.'.$ext, 'asset');
+
+        $costumes = new Costume;
+        $costumes->costume_name = $request->nama;
+        $costumes->description = $request->description;
+        $costumes->price = $request->harga;
+        $costumes->gambar = $nama_file .'.'.$ext;
+        $costumes->category_id = $request->category;
+
+        $costumes->save();
+
+        return redirect()->back()->with('insertSuccess', 'Kostum baru berhasil ditambahkan');
+
+    }
 }

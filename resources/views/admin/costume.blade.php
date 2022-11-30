@@ -5,6 +5,12 @@
         <div class="container-fluid px-4">
             <h1 class="mt-4">Sunnyrent Cost</h1>
             <a href="/admin/costumes" class="btn btn-success mb-3">Kembali</a>
+            @if (session()->has('editSuccess'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('editSuccess') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="customer-detail">
@@ -46,7 +52,8 @@
                                     <div class="customers-socmed mt-2">
                                         <a class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">Edit</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <a href="/admin/costume/{{ $costume->id }}/delete"
+                                            class="btn btn-danger">Delete</a>
                                     </div>
                                 </div>
                                 <div
@@ -99,11 +106,32 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form action="/admin/update-costume" method="post" enctype="multipart/form-data" id="updateform">
+                        @csrf
+                        <input type="text" name="id" id="id" hidden value="{{ $costume->id }}">
+                        <div class="field d-flex flex-column mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control"
+                                value="{{ $costume->costume_name }}" required>
+                        </div>
+                        <div class="field d-flex flex-column mb-3">
+                            <label for="description" class="form-label">Deskripsi</label>
+                            <textarea name="description" id="description" class="form-control" cols="30" rows="10" required>{{ $costume->description }}</textarea>
+                        </div>
+                        <div class="field d-flex flex-column mb-3">
+                            <label for="harga" class="form-label">Harga</label>
+                            <input type="number" name="harga" id="harga" class="form-control"
+                                value="{{ $costume->price }}" required>
+                        </div>
+                        <div class="field d-flex flex-column mb-3">
+                            <label for="gambar" class="form-label">gambar</label>
+                            <input type="file" name="gambar" id="gambar" class="form-control">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="submitform()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -129,5 +157,9 @@
             },
 
         });
+
+        function submitform() {
+            document.getElementById('updateform').submit();
+        }
     </script>
 @endsection

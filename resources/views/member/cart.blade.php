@@ -10,7 +10,7 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-lg-6 col-12 mb-lg-0 mb-3">
+                <div class="col-lg-5 col-12 mb-lg-0 mb-3">
                     <div class="card item-list shadow-sm">
                         <div class="card-header bg-yellow">
                             <h3>Keranjang</h3>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-12 mb-lg-0 mb-3">
+                <div class="col-lg-4 col-12 mb-lg-0 mb-3">
                     <form action="/checkout" method="post">
                         @csrf
                         <div class="card shadow-sm payments">
@@ -89,10 +89,14 @@
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="mb-2">
                                     <h5 class="lh-1">Tanggal Rental</h5>
-                                    <input type="date" name="tgl_rental" class="form-control" id="" required>
+                                    <input type="date" name="tgl_rental" class="form-control" id=""
+                                        onchange="costumeCheck(event)" required>
                                     <span class="rent-msg text-danger">Durasi rental selama 3 hari dihitung dari tanggal
                                         yang
                                         dipilih</span>
+                                    <div class="notif-box">
+
+                                    </div>
                                 </div>
                                 <div class="prices mb-3">
                                     <h5 class="lh-1">Rincian harga</h5>
@@ -166,7 +170,7 @@
                                     </div>
                                 </div>
                                 <button {{ $amount == 0 ? 'disabled' : '' }} type="submit"
-                                    class="w-100 border border-0 rounded bg-yellow py-1 fw-semibold align-self-bottom">Checkout</button>
+                                    class="checkout w-100 border border-0 rounded bg-yellow py-1 fw-semibold align-self-bottom">Checkout</button>
                             </div>
                         </div>
                     </form>

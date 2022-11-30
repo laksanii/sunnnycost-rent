@@ -58,6 +58,7 @@
                     <h5>Ayo cepet rental tunggu apa lagi</h5>
                 </div>
             @endforelse
+            {{ $orders->links('partials.paginate') }}
         </div>
     </section>
 @endsection

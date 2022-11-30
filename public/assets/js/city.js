@@ -9,7 +9,6 @@ function openCity(event) {
             data: { id: selectProv.val() },
             success: function (data) {
                 Object.values(data.city).forEach((val) => {
-                    console.log(val.type, val.city_name);
                     const city_name = val.type + " " + val.city_name;
                     selectCity.append(
                         $("<option>", {

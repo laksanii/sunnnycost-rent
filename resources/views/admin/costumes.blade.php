@@ -34,9 +34,12 @@
                             <th>Action</th>
                         </tfoot>
                         <tbody>
+                            @php
+                                $i = 1;
+                            @endphp
                             @foreach ($costumes as $costume)
                                 <tr>
-                                    <td class="align-middle">1</td>
+                                    <td class="align-middle">{{ $i++ }}</td>
                                     <td class="align-middle">
                                         <a href="/admin/costumes/{{ $costume->id }}" class="text-dark">
                                             {{ $costume->costume_name }}

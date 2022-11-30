@@ -26,7 +26,7 @@ class OrderController extends Controller
     public function memberOrders(){
         return view('member.orders', [
             'title' => 'Order',
-            'orders' => Order::where('user_id', Auth::user()->id)->get(),
+            'orders' => Order::where('user_id', Auth::user()->id)->orderBy('id','desc')->paginate(7),
         ]);
     }
 

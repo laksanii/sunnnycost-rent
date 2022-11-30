@@ -96,6 +96,8 @@ Route::get('/insert-kostum', [CostumeController::class, 'insert']);
 
 Route::post('/insert-kostum', [CostumeController::class, 'storeKostum']);
 
+Route::get('/costume-check', [CostumeController::class, 'check']);
+
 Route::get('/tes', function(){
     return view('test');
 });

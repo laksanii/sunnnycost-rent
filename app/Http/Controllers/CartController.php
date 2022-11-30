@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Costume;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -69,6 +70,10 @@ class CartController extends Controller
         
         foreach($user_cart as $item){
             $order->costumes()->attach($item->costume_id, ["price" => $item->costume->price]);
+            $costume = Costume::find($item->costume_id);
+            $costume->status = "on book";
+            $costume->save();
+
         }
 
         Cart::where('user_id', Auth::user()->id)->delete();

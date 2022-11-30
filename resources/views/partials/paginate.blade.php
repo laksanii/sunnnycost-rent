@@ -63,7 +63,6 @@
             <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
             {!! __('dari') !!}
             <span class="fw-semibold">{{ $paginator->total() }}</span>
-            {!! __('Kostum') !!}
         </p>
     </div>
 @endif

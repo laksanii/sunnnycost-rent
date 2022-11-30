@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Order;
+use App\Models\Costume;
 use Illuminate\Http\Request;
 
 class PaymentMiddleware
@@ -22,6 +23,12 @@ class PaymentMiddleware
             if($order->created_at->addHours(2) < now()){
                 $order->payment_status = 'gagal';
                 $order->save();
+
+                foreach($order->costumes as $costume){
+                    $cost = Costume::find($costume->id);
+                    $cost->status = 'ready';
+                    $cost->save();
+                }
             }
         }
         

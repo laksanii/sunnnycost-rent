@@ -18,7 +18,15 @@
                                 <div class="col-md-5 col-12 mb-2 mb-md-0">
                                     <div class="customer-name fs-3">
                                         {{ $costume->costume_name }} ({{ $costume->category->category_name }})
-                                        <span class="bg-success fs-6 text-light py-1 px-2 rounded">Ready</span>
+                                        @if ($costume->status == 'on book' || $costume->status == 'on rent')
+                                            <span class="bg-warning fs-6 rounded px-2 pb-1">{{ $costume->status }}</span>
+                                        @elseif($costume->status == 'ready')
+                                            <span
+                                                class="bg-success fs-6 rounded text-light rounded px-2 pb-1">{{ $costume->status }}</span>
+                                        @else
+                                            <span
+                                                class="bg-danger fs-6 rounded text-light rounded px-2 pb-1">{{ $costume->status }}</span>
+                                        @endif
                                     </div>
                                     <div class="customer-address">
                                         <div class="states fs-6 lh-sm">
@@ -36,7 +44,8 @@
                                         </div>
                                     </div>
                                     <div class="customers-socmed mt-2">
-                                        <a href="" class="btn btn-primary">Edit</a>
+                                        <a class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">Edit</a>
                                         <a href="" class="btn btn-danger">Delete</a>
                                     </div>
                                 </div>
@@ -47,15 +56,18 @@
                                         <div class="swiper-wrapper">
                                             <!-- Slides -->
                                             <div class="swiper-slide">
-                                                <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
+                                                <img src="{{ asset('assets/img/costumes/' . $costume->gambar) }}"
+                                                    alt=""
                                                     class="cost-slide-img rounded-1 border border-2 border-secondary">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
+                                                <img src="{{ asset('assets/img/costumes/' . $costume->gambar) }}"
+                                                    alt=""
                                                     class="cost-slide-img rounded-1 border border-2 border-secondary">
                                             </div>
                                             <div class="swiper-slide">
-                                                <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
+                                                <img src="{{ asset('assets/img/costumes/' . $costume->gambar) }}"
+                                                    alt=""
                                                     class="cost-slide-img rounded-1 border border-2 border-secondary">
                                             </div>
 
@@ -77,6 +89,25 @@
             </div>
         </div>
     </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')

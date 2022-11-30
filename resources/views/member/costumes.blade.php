@@ -16,10 +16,17 @@
                                 </div>
                             </a>
                             <div class="costume-card-foot text-dark  text-center   ">
-                                <button class="btn-cart border border-none bg-yellow fw-semibold py-2"
-                                    onclick="addToCart(event, {{ auth()->user()->id }}, {{ $costume->id }})">
-                                    <i class="fa-solid fa-cart-plus me-2"></i>Keranjang
-                                </button>
+                                @if (auth()->check())
+                                    <button class="btn-cart border border-none bg-yellow fw-semibold py-2"
+                                        onclick="addToCart(event, {{ auth()->user()->id }}, {{ $costume->id }})">
+                                        <i class="fa-solid fa-cart-plus me-2"></i>Keranjang
+                                    </button>
+                                @else
+                                    <button class="btn-cart border border-none bg-yellow fw-semibold py-2"
+                                        onclick="location.href = '/login'">
+                                        Login
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>

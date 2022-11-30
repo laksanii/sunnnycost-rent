@@ -89,7 +89,7 @@
                             <div class="card-body d-flex flex-column justify-content-between">
                                 <div class="mb-2">
                                     <h5 class="lh-1">Tanggal Rental</h5>
-                                    <input type="date" name="tgl-rental" class="form-control" id="">
+                                    <input type="date" name="tgl_rental" class="form-control" id="" required>
                                     <span class="rent-msg text-danger">Durasi rental selama 3 hari dihitung dari tanggal
                                         yang
                                         dipilih</span>
@@ -98,16 +98,18 @@
                                     <h5 class="lh-1">Rincian harga</h5>
                                     @php
                                         $total = 0;
+                                        $amount = 0;
                                     @endphp
                                     @foreach ($cart as $item)
                                         <div class="row text-secondary">
                                             <div class="col-8">
                                                 {{ $item->costume->costume_name }}
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-4 text-end">
                                                 {{ $item->costume->price }}
                                                 @php
                                                     $total += $item->costume->price;
+                                                    $amount += 1;
                                                 @endphp
                                             </div>
                                         </div>
@@ -117,32 +119,53 @@
                                         <div class="col-8">
                                             Total
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-4 text-end">
                                             {{ $total }}
+                                        </div>
+                                        <input type="text" hidden value={{ $amount }} name="amount">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            Ongkos Kirim
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text"
+                                                value="{{ App\helpers\Domisili::getOngkir(auth()->user()->id)['value'] * $amount }}"
+                                                class="w-100 border-0 text-end p-0" name="ongkir">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <span class="fw-semibold">Grand Total</span>
+                                        </div>
+                                        <div class="col-4 text-end">
+                                            <input type="text"
+                                                value="{{ $total + App\helpers\Domisili::getOngkir(auth()->user()->id)['value'] * $amount }}"
+                                                class="w-100 border-0 text-end p-0" name="total">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="payments-method mb-3">
                                     <h5 class="lh-1">Metode Pembayaran</h5>
                                     <select class="form-select form-select-sm mb-3" aria-label=".form-select-sm example"
-                                        name="payment">
+                                        name="payment" required onchange="paymentMethod(event)">
                                         <option selected disabled hidden>Pilih Metode Pembayaran</option>
                                         @foreach ($payments as $payment)
                                             <option value="{{ $payment->id }}">{{ $payment->payment_method }}</option>
                                         @endforeach
                                     </select>
-                                    <div class="row px-1">
+                                    <div class="row px-1 d-none bank-box">
                                         <div class="col-4">
                                             <img src="{{ asset('assets/img/bank/bca.png') }}" class="bank-img"
                                                 alt="">
                                         </div>
                                         <div class="col-8 text-end">
-                                            <span class="norek d-block">083832352467</span>
-                                            <span class="a-n fw-semibold p-0">Prasetyo Adi Pratama Nugroho</span>
+                                            <span class="norek d-block"></span>
+                                            <span class="a-n fw-semibold p-0"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit"
+                                <button {{ $amount == 0 ? 'disabled' : '' }} type="submit"
                                     class="w-100 border border-0 rounded bg-yellow py-1 fw-semibold align-self-bottom">Checkout</button>
                             </div>
                         </div>
@@ -154,4 +177,5 @@
 
 @section('script')
     <script src="{{ asset('assets/js/costume.js') }}"></script>
+    <script src="{{ asset('assets/js/payment.js') }}"></script>
 @endsection

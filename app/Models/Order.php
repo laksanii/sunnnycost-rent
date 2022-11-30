@@ -13,6 +13,7 @@ class Order extends Model
     use HasFactory;
 
     protected $guards = [];
+    protected $dates = ['created_at', 'updated_at','tgl_rental'];
 
     public function user(){
         return $this->belongsTo(User::class);

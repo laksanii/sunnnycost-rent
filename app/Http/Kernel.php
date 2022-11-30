@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\PaymentMiddleware::class,
         ],
 
         'api' => [
@@ -66,6 +67,7 @@ class Kernel extends HttpKernel
         'onlyGuest' => \App\Http\Middleware\OnlyGuestMiddleware::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'member' => \App\Http\Middleware\MemberMiddleware::class,
-        'cart' => \App\Http\Middleware\CartMiddleware::class
+        'cart' => \App\Http\Middleware\CartMiddleware::class,
+        'payment' => \App\Http\Middleware\PaymentMiddleware::class,
     ];
 }

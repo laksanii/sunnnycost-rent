@@ -45,9 +45,17 @@
                         </p>
                     </div>
                     <div class="form position-absolute bottom-0 start-0 end-0 px-3">
-                        <button class="rent-btn btn bg-yellow d-block w-100">
-                            <i class="fa-solid fa-cart-plus me-2"></i>Keranjang
-                        </button>
+                        @if (auth()->check())
+                            <button class="btn-cart border border-none bg-yellow fw-semibold py-2 w-100"
+                                onclick="addToCart(event, {{ auth()->user()->id }}, {{ $costume->id }})">
+                                <i class="fa-solid fa-cart-plus me-2"></i>Keranjang
+                            </button>
+                        @else
+                            <button class="btn-cart border border-none bg-yellow fw-semibold py-2 w-100"
+                                onclick="location.href = '/login'">
+                                Login
+                            </button>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -57,4 +65,5 @@
 
 @section('script')
     <script src="{{ asset('assets/js/costume.js') }}"></script>
+    <script src="{{ asset('assets/js/cart.js') }}"></script>
 @endsection

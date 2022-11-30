@@ -235,6 +235,19 @@ input:focus {
     top: 10%;
 }
 
+/* Invoice */
+
+.invoice-box {
+    width: 700px;
+}
+
+.invoice-logo {
+    width: 150px;
+}
+
+.bank-invoice {
+    width: 150px;
+}
 /* Responsive */
 
 @media screen and (min-width: 1200px) {
@@ -257,6 +270,27 @@ input:focus {
     }
 }
 
+/* Orders */
+.card-item {
+    height: 215px;
+}
+
+.total-box {
+    height: 100%;
+}
+
+.cont {
+    min-height: 80vh;
+}
+
+.total-belanja {
+    font-size: 1.3rem;
+}
+
+.cost-name {
+    font-size: 1.5rem;
+}
+
 @media screen and (max-width: 1400px) {
     .payment-img {
         width: 250px;
@@ -269,12 +303,11 @@ input:focus {
         padding: 0 20px;
     }
 
-    .search-box {
-        width: px;
-    }
-
     .costume-detail-box {
         min-height: 300px;
+    }
+    .total-belanja {
+        font-size: 1.4rem;
     }
 }
 
@@ -289,6 +322,16 @@ input:focus {
 
     .item-img {
         width: 7em;
+    }
+
+    .invoice-box {
+        width: calc(100% - 10px);
+    }
+    .total-belanja {
+        font-size: 0.9rem;
+    }
+    .cost-name {
+        font-size: 1.1rem;
     }
 }
 

@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CostumeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
@@ -59,6 +60,14 @@ Route::middleware('member')->group(function(){
     Route::get('/storeCart', [CartController::class, 'storeCart']);
 
     Route::post('/delete-item', [CartController::class, 'deleteItem']);
+
+    Route::post('/checkout', [CartController::class, 'checkOut']);
+
+    Route::get('/invoice/{order_id}', [InvoiceController::class, 'index']);
+
+    Route::get('/orders', [OrderController::class, 'memberOrders'])->middleware('cart');
+
+    Route::get('/order/{order_id}', [OrderController::class, 'memberOrder'])->middleware('cart');
 });
 
 Route::middleware('guest')->group(function(){
@@ -80,6 +89,8 @@ Route::middleware('cart')->group(function(){
 });
 
 Route::get('/get-city', [RegisterController::class, 'getCity']);
+
+Route::get('/get-payment', [CartController::class, 'getBank']);
 
 Route::get('/insert-kostum', [CostumeController::class, 'insert']);
 

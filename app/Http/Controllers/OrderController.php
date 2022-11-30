@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -19,6 +20,20 @@ class OrderController extends Controller
         return view('admin.order', [
             'title' => 'Order Detail',
             'order' => Order::find($id)
+        ]);
+    }
+
+    public function memberOrders(){
+        return view('member.orders', [
+            'title' => 'Order',
+            'orders' => Order::where('user_id', Auth::user()->id)->get(),
+        ]);
+    }
+
+    public function memberOrder($order_id) {
+        return view('member.order', [
+            'title' => 'Order Detail',
+            'order' => Order::find($order_id),
         ]);
     }
 }

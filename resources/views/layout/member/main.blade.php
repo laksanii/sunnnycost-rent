@@ -25,7 +25,7 @@
 
     <footer class="bg-yellow mt-4 pt-3 pb-2">
         <div class="container d-flex flex-wrap">
-            <div class="link-box d-flex flex-column gap-3 col-12 col-md-3 mb-4 mb-md-0">
+            <div class="link-box d-flex flex-column gap-3 col-6 col-md-3 mb-4 mb-md-0">
                 <div class="link">
                     <a href="/" class="text-decoration-none text-dark">Home</a>
                 </div>
@@ -36,7 +36,7 @@
                     <a href="/rules" class="text-decoration-none text-dark">Rules</a>
                 </div>
             </div>
-            <div class="link-box d-flex flex-column gap-3 col-12 col-md-3 mb-4">
+            <div class="link-box d-flex flex-column gap-3 col-6 col-md-3 mb-4">
                 <div class="link">
                     <a href="#" class="text-decoration-none text-dark"><i
                             class="fa-brands fa-facebook me-1"></i>Facebook</a>

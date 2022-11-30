@@ -30,4 +30,23 @@ class Domisili{
     return $city_name;
 
   }
+
+  public static function getOngkir($id){
+    $user = User::find($id);
+    $ongkir_client = Http::withHeaders([
+      'key' => '05fb707215b778a76401b6996bc53823'
+  ])->post('https://api.rajaongkir.com/starter/cost', [
+    'origin' => 154,
+    'destination' => $user->kota,
+    'weight' => 2000,
+    'courier' => 'jne'
+  ])->json();
+
+  // dd($ongkir_client);
+  
+  $ongkir = $ongkir_client['rajaongkir']['results'][0]['costs'][1]['cost'][0];
+
+  return $ongkir;
+
+  }
 }

@@ -23,35 +23,29 @@
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama</th>
-                                <th>Email</th>
-                                <th class="text-center">No Hp</th>
-                                <th class="text-center">Provinsi</th>
-                                <th class="text-center">Kota</th>
-                                <th class="text-center">Alamat</th>
-                                <th class="text-center">No Hp Kerabat</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
-                            <tr>
-                                <td class="align-middle">1</td>
-                                <td class="align-middle">Perental 1</td>
-                                <td class="align-middle">rental@gmail.com</td>
-                                <td class="align-middle text-center">083832352467</td>
-                                <td class="align-middle text-center">Jakarta</td>
-                                <td class="align-middle text-center">Jakarta Timur</td>
-                                <td class="align-middle text-center">Jakarta Timur</td>
-                                <td class="align-middle text-center">081392398977</td>
-                                <td class="align-middle text-center">
-                                    <a href="/admin/customers/1" class="btn btn-success">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($customers as $customer)
+                                <tr>
+                                    <td class="align-middle">{{ $i++ }}</td>
+                                    <td class="align-middle">{{ $customer->name }}</td>
+                                    <td class="align-middle">{{ $customer->email }}</td>
+                                    <td class="align-middle text-center">{{ $customer->no_telepon }}</td>
+                                    <td class="align-middle text-center">
+                                        {{ \App\helpers\Domisili::getProvinsi($customer->id) }}</td>
+                                    <td class="align-middle text-center">{{ \App\helpers\Domisili::getKota($customer->id) }}
+                                    </td>
+                                    <td class="align-middle text-center">{{ $customer->alamat }}</td>
+                                    <td class="align-middle text-center">{{ $customer->no_kerabat }}</td>
+                                    <td class="align-middle text-center">
+                                        <a href="/admin/customers/{{ $customer->id }}" class="btn btn-success">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

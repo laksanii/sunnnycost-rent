@@ -18,6 +18,10 @@
                     <div class="side-icon text-center"><i class="fa-solid fa-users"></i></div>
                     <div class="ms-2">Customers</div>
                 </a>
+                <a class="nav-link" href="/admin/calendar">
+                    <div class="side-icon text-center"><i class="fa-solid fa-calendar"></i></div>
+                    <div class="ms-2">Calendar</div>
+                </a>
             </div>
         </div>
         {{-- <div class="sb-sidenav-footer">

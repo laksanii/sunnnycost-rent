@@ -14,6 +14,7 @@ use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class CostumeController extends Controller
 {
@@ -122,7 +123,9 @@ class CostumeController extends Controller
     }
 
     public function deleteCostume($id) {
-        Costume::find($id)->delete();
+        $costume = Costume::find($id);
+        Storage::disk('asset')->delete('img/costumes/'.$costume->gambar);
+        $costume->delete();
 
         return redirect("/admin/costumes")->with('deleteSuccess', 'Kostum berhasil dihapus');
     }

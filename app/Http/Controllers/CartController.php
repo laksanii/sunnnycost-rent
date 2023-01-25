@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Costume;
 use App\Models\Payment;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
@@ -52,7 +53,7 @@ class CartController extends Controller
     public function checkOut(Request $request){
         $user_cart = Auth::user()->carts;
         
-        $tgl_rental = Carbon::createFromDate($request->tgl_rental);
+        $tgl_rental = CarbonImmutable::createFromDate($request->tgl_rental);
         $tgl_kembali = $tgl_rental->addDays(3);
         $tgl_order = Carbon::now('Asia/Jakarta')->toDateString();
 

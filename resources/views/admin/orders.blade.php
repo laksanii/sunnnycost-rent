@@ -15,46 +15,37 @@
                                 <th>#</th>
                                 <th>Order ID</th>
                                 <th>Nama</th>
-                                <th>No Telepon</th>
-                                <th>Total</th>
+                                <th>Tanggal Order</th>
+                                <th>Payment Status</th>
                                 <th class="text-center">Tanggal Rental</th>
                                 <th class="text-center">Tanggal Kembali</th>
-                                <th class="text-center">Ongkir</th>
-                                <th class="text-center">Payment Status</th>
+                                <th class="text-center">Jumlah</th>
+                                <th class="text-center">Total</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Order ID</th>
-                                <th>Nama</th>
-                                <th>No Telepon</th>
-                                <th>Total</th>
-                                <th class="text-center">Tanggal Rental</th>
-                                <th class="text-center">Tanggal Kembali</th>
-                                <th class="text-center">Ongkir</th>
-                                <th class="text-center">Payment Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>00000001</td>
-                                <td>Perental 1</td>
-                                <td>083832352467</td>
-                                <td>Rp 150.000</td>
-                                <td class="text-center">2022-11-19</td>
-                                <td class="text-center">2022-11-23</td>
-                                <td class="text-center">Rp 20000</td>
-                                <td class="text-center">Lunas</td>
-                                <td class="text-center">
-                                    <a href="/admin/orders/1" class="btn btn-success">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @php
+                                $i = 1;
+                            @endphp
+                            @foreach ($orders as $order)
+                                <tr>
+                                    <td>{{ $i++ }}</td>
+                                    <td>{{ $order->id }}</td>
+                                    <td>{{ $order->user->name }}</td>
+                                    <td>{{ $order->tgl_order }}</td>
+                                    <td>{{ $order->payment_status }}</td>
+                                    <td class="text-center">{{ $order->tgl_rental->format('Y-m-d') }}</td>
+                                    <td class="text-center">{{ $order->tgl_kembali }}</td>
+                                    <td class="text-center">{{ $order->amount }}</td>
+                                    <td class="text-center">{{ $order->total }}</td>
+                                    <td class="text-center">
+                                        <a href="/admin/orders/{{ $order->id }}" class="btn btn-success">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

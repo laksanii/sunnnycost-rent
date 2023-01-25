@@ -7,6 +7,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CostumeController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
@@ -50,6 +51,8 @@ Route::prefix('admin')->group(function(){
         Route::post('/update-costume', [CostumeController::class, 'updateCostume']);
         
         Route::post('/logout', [LoginController::class, 'logout']);
+
+        Route::get('/calendar', [CalendarController::class, 'index']);
     });
 
     Route::middleware('guest')->group(function(){
@@ -103,6 +106,10 @@ Route::get('/insert-kostum', [CostumeController::class, 'insert']);
 Route::post('/insert-kostum', [CostumeController::class, 'storeKostum']);
 
 Route::get('/costume-check', [CostumeController::class, 'check']);
+
+Route::get('/order-income', [OrderController::class, 'getIncome']);
+
+Route::get('/get-costume-rent', [CalendarController::class, 'getCostumeRent']);
 
 Route::get('/tes', function(){
     return view('test');

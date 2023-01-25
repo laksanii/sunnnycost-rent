@@ -6,7 +6,17 @@
             <h1 class="mt-4">Sunnyrent Cost</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Order Detail</li>
-                <li class="breadcrumb-item active">Order ID : <span>00000001</span></li>
+                <li class="breadcrumb-item active">Order ID : <span>#{{ $order->id }}</span>
+                    @if ($order->payment_status == 'belum lunas')
+                        <span class="bg-warning py-1 px-2 text-dark rounded">{{ $order->payment_status }}</span>
+                        <a href="#" class="bg-success text-decoration-none py-1 px-2 text-light rounded">Konfirmasi
+                            Pembayaran</a>
+                    @elseif($order->payment_status == 'lunas')
+                        <span class="bg-success py-1 px-2 text-light rounded">{{ $order->payment_status }}</span>
+                    @else
+                        <span class="bg-danger py-1 px-2 text-light rounded">{{ $order->payment_status }}</span>
+                    @endif
+                </li>
             </ol>
             <a href="/admin/orders" class="btn btn-success mb-3">Kembali</a>
             <div class="card mb-4">
@@ -20,29 +30,31 @@
                             <div class="row justify-content-between mt-3">
                                 <div class="col-md-3 col-12">
                                     <div class="customer-name fs-3">
-                                        Perental 1
+                                        {{ $order->user->name }}
                                     </div>
                                     <div class="customer-address">
                                         <div class="states fs-6 lh-sm">
-                                            <span class="state">DKI Jakarta</span>, <span class="city">Jakarta
-                                                Timur</span>
+                                            <span
+                                                class="state">{{ App\helpers\Domisili::getProvinsi($order->user->id) }}</span>,
+                                            <span
+                                                class="city">{{ App\helpers\Domisili::getKota($order->user->id) }}</span>
                                         </div>
                                         <div class="address">
-                                            Jakarta Timur
+                                            {{ $order->user->alamat }}
                                         </div>
                                     </div>
                                     <div class="customer-phone fs-5 lh-lg">
-                                        083832352467
+                                        {{ $order->user->no_telepon }}
                                     </div>
                                 </div>
                                 <div
                                     class="col-md-9 col-12 d-flex flex-column flex-md-row gap-2 justify-content-start justify-content-md-end ">
                                     <div class="cust-img-box">
-                                        <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
-                                            class="cust-img rounded-1 border border-2 border-secondary">
+                                        <img src="{{ 'data:image/jpeg;base64,' . base64_encode($img_selfie) }}"
+                                            alt="" class="cust-img rounded-1 border border-2 border-secondary">
                                     </div>
                                     <div class="cust-idcard-box">
-                                        <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
+                                        <img src="{{ 'data:image/jpeg;base64,' . base64_encode($img_ktp) }}" alt=""
                                             class="cust-idcard rounded-1 border border-2 border-secondary">
                                     </div>
                                 </div>
@@ -58,56 +70,53 @@
                             <h3>Item Details</h3>
                         </div>
                         <hr class="m-0">
-                        <div class="costume-info">
-                            <div class="row justify-content-between mt-3">
-                                <div class="col-md-3 col-12">
-                                    <div class="costume-name fs-3">
-                                        Kobo Kanaeru
+                        @foreach ($order->costumes as $costume)
+                            <div class="costume-info">
+                                <div class="row justify-content-between mt-3">
+                                    <div class="col-md-3 col-12">
+                                        <div class="costume-name fs-3">
+                                            {{ $costume->costume_name }}
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="costume-desc lh-sm">
+                                                {{ $costume->description }}
+                                            </div>
+                                            <div class="costume-brand lh-sm">
+                                                Brand : Taobao
+                                            </div>
+                                            <div class="costume-size lh-sm">
+                                                Size : S - L
+                                            </div>
+                                        </div>
+                                        <div class="costume-date mb-3">
+                                            <div class="label fw-semibold">
+                                                Tanggal rental:
+                                            </div>
+                                            <div class="date">
+                                                {{ $order->tgl_rental->format('Y-m-d') }} - {{ $order->tgl_kembali }}
+                                            </div>
+                                        </div>
+                                        <div class="price fw-semibold">
+                                            {{ $costume->price }}
+                                        </div>
                                     </div>
-                                    <div class="mb-2">
-                                        <div class="costume-desc lh-sm">
-                                            Kobo Kanaeru Fullset
+                                    <div
+                                        class="col-md-9 col-12 d-flex flex-column flex-md-row gap-2 justify-content-start justify-content-md-end ">
+                                        <div class="cust-img-box">
+                                            <img src="{{ asset('assets/img/costumes/' . $costume->gambar) }}"
+                                                alt=""
+                                                class="costume-img rounded-1 border border-2 border-secondary">
                                         </div>
-                                        <div class="costume-brand lh-sm">
-                                            Brand : Taobao
+                                        <div class="cust-idcard-box">
+                                            <img src="{{ asset('assets/img/costumes/' . $costume->gambar) }}"
+                                                alt=""
+                                                class="costume-img rounded-1 border border-2 border-secondary">
                                         </div>
-                                        <div class="costume-size lh-sm">
-                                            Size : S - L
-                                        </div>
-                                    </div>
-                                    <div class="costume-date mb-3">
-                                        <div class="label fw-semibold">
-                                            Tanggal rental:
-                                        </div>
-                                        <div class="date">
-                                            2022-11-19 - 2022-11-23
-                                        </div>
-                                    </div>
-                                    <div class="price fw-semibold">
-                                        Price : Rp 100.000
                                     </div>
                                 </div>
-                                <div
-                                    class="col-md-9 col-12 d-flex flex-column flex-md-row gap-2 justify-content-start justify-content-md-end ">
-                                    <div class="cust-img-box">
-                                        <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
-                                            class="costume-img rounded-1 border border-2 border-secondary">
-                                    </div>
-                                    <div class="cust-idcard-box">
-                                        <img src="{{ asset('assets/img/featured/kobo.jpg') }}" alt=""
-                                            class="costume-img rounded-1 border border-2 border-secondary">
-                                    </div>
-                                </div>
+                                <hr>
                             </div>
-                            <hr>
-                            <div class="customer-status fs-6 lh-lg btn btn-warning px-1 py-1 fw-semibold mb-3 me-2">
-                                Status : Sedang Dirental
-                            </div>
-                            <div class="customer-status fs-6 lh-lg btn btn-success px-1 py-1 fw-semibold mb-3"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                update status
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -124,27 +133,37 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Item</th>
-                                        <th>Kategori</th>
-                                        <th>Size</th>
-                                        <th>Qty</th>
-                                        <th>Harga</th>
-                                        <th>Total Harga</th>
+                                        <th class="text-center">Kategori</th>
+                                        <th class="text-center">Size</th>
+                                        <th class="text-center">Harga</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="align-middle">
-                                        <td>1</td>
-                                        <td>Kobo Kanaeru</td>
-                                        <td>VTuber</td>
-                                        <td>S</td>
-                                        <td>1</td>
-                                        <td>Rp 100.000</td>
-                                        <td>Rp 100.000</td>
+                                    @php
+                                        $total = 0;
+                                        $i = 1;
+                                    @endphp
+                                    @foreach ($order->costumes as $costume)
+                                        <tr class="align-middle">
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $costume->costume_name }}</td>
+                                            <td class="text-center">{{ $costume->category->category_name }}</td>
+                                            <td class="text-center">S</td>
+                                            <td class="text-center">Rp {{ $costume->price }}</td>
+                                        </tr>
+                                        @php
+                                            $total += $costume->price;
+                                        @endphp
+                                    @endforeach
+                                    <tr class="fw-bold">
+                                        <td></td>
+                                        <td colspan="3" class="text-center">Ongkos kirim</td>
+                                        <td class="text-center">Rp {{ $order->ongkir }}</td>
                                     </tr>
                                     <tr class="fw-bold">
                                         <td></td>
-                                        <td colspan="5" class="text-center">Total</td>
-                                        <td>Rp 100.000</td>
+                                        <td colspan="3" class="text-center">Total</td>
+                                        <td class="text-center">Rp {{ $total + $order->ongkir }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -102,8 +102,8 @@ class MemberController extends Controller
         $member->alamat = $request->alamat;
         $member->kode_pos = $request->kode_pos;
         $member->no_telepon = $request->no_hp;
-        $member->foto_selfie = $nama_file_selfie.$ext;
-        $member->foto_ktp = $nama_file_ktp.$ext;
+        $member->foto_selfie = $nama_file_selfie.'.'.$ext;
+        $member->foto_ktp = $nama_file_ktp.'.'.$ext;
 
         $member->save();
         
